@@ -14,23 +14,15 @@ def decode_image(file_location="images/encoded_sample.png"):
     """
     encoded_image = Image.open(file_location)
     red_channel = encoded_image.split()[0]
-    # The above could also be written as one of:
-    #   red_channel, green_channel, blue_channel = encoded_image.split()
-    #   red_channel, _, _ = encoded_image.split()
-    #   red_channel, *_ = encoded_image.split()
-    # The first has the disadvantage of creating temporary variables that aren't
-    # used. The special variable name _ (underscore) is conventionally named
-    # an unused variable.
-
-    x_size = encoded_image.size[0]
-    y_size = encoded_image.size[1]
-    # The above could also be written as:
-    #   x_size, y_size = encoded_image.size[0]
+    x_size, y_size = encoded_image.size
 
     decoded_image = Image.new("RGB", encoded_image.size)
     pixels = decoded_image.load()
 
-    pass  # TODO: Fill in decoding functionality
+    for i in range(x_size):
+        for j in range(y_size):
+            if red_channel.getpixel((i, j)) % 2 == 0:
+                pixels[i, j] = (255,255,255)
 
     decoded_image.save("images/decoded_image.png")
 
@@ -57,7 +49,7 @@ def write_text(text_to_write, image_size):
     return image_text
 
 
-def encode_image(text_to_encode, template_image="images/samoyed.jpg"):
+def encode_image(text_to_encode, template_image="images/samoyed2.jpg"):
     """Encode a text message into an image.
 
     Parameters
@@ -67,12 +59,35 @@ def encode_image(text_to_encode, template_image="images/samoyed.jpg"):
     template_image: str
         The image to use for encoding. An image is provided by default.
     """
-    pass  # TODO: Fill out this function
+    unencoded_image = Image.open(template_image)
+    red_channel, green_channel, blue_channel = unencoded_image.split()
+    x_size, y_size = unencoded_image.size
+
+    encoded_image = Image.new("RGB", unencoded_image.size)
+    pixels = encoded_image.load()
+    data = write_text(text_to_encode, (x_size, y_size))
+
+    for i in range(x_size):
+        for j in range(y_size):
+            red_val = red_channel.getpixel((i, j))
+            green_val = green_channel.getpixel((i, j))
+            blue_val = blue_channel.getpixel((i, j))
+
+            if (data.getpixel((i, j)) == (0,0,0)) != (red_val % 2 == 0):
+                red_val += 1
+                if red_val > 255:
+                    red_val -= 2
+
+            pixels[i, j] = (red_val, green_val, blue_val)
+
+    encoded_image.save("images/encoded_image.png")
 
 
 if __name__ == '__main__':
     print("Decoding the image...")
-    decode_image()
+    decode_image("images/encoded_image.png")
 
     print("Encoding the image...")
-    encode_image()
+    text = "An infinite number of mathematicians walk into a bar. The first mathematician orders a beer. The second orders half a beer. I don't serve half-beers the bartender replies. Excuse me? Asks mathematician 2. What kind of bar serves half-beers? The bartender remarks. That's ridiculous. Oh c'mon says mathematician 1 do you know how hard it is to collect an infinite number of us? Just play along There are strict laws on how I can serve drinks. I couldn't serve you half a beer even if I wanted to. But that's not a problem mathematician 3 chimes in at the end of the joke you serve us a whole number of beers. You see, when you take the sum of a continuously halving function- I know how limits work interjects the bartender. Oh, alright then. I didn't want to assume a bartender would be familiar with such advanced mathematics Are you kidding me? The bartender replies, you learn limits in like, 9th grade! What kind of mathematician thinks limits are advanced mathematics? HE'S ON TO US mathematician 1 screeches. Simultaneously, every mathematician opens their mouth and out pours a cloud of multicolored mosquitoes. Each mathematician is bellowing insects of a different shade. The mosquitoes form into a singular, polychromatic swarm. FOOLS it booms in unison, I WILL INFECT EVERY BEING ON THIS PATHETIC PLANET WITH MALARIA The bartender stands fearless against the technicolor hoard. He interrupts, thinking fast, if you do that, politicians will use the catastrophe as an excuse to implement free healthcare. Think of how much that will hurt the taxpayers! The mosquitoes fall silent for a brief moment. My God, you're right. We didn't think about the economy! Very well, we will not attack this dimension. FOR THE TAXPAYERS! and with that, they vanish. A nearby barfly stumbles over to the bartender. How'd you know that would work? It's simple really the bartender says. I saw that the vectors formed a gradient and therefore must be conservative."
+
+    encode_image(text, "images/samoyed2.jpg")
