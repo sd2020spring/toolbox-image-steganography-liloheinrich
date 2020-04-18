@@ -11,4 +11,3 @@ Examples:
 | original image     |  encoded image      |  secret message     |
 |:------------------:|:-------------------:|:-------------------:|
 |  ![](images/samples/samoyed.png)  |  ![](images/samples/encoded_image.png)  |  ![](images/samples/decoded_image.png)  |
-|  ![](images/samoyed2.png)  |  ![](images/encoded_image.png)  |  ![](images/decoded_image.png)  |
