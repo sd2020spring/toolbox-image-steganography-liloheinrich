@@ -12,3 +12,6 @@ Examples:
 |:------------------:|:-------------------:|:-------------------:|
 |  ![](images/samples/samoyed.png)  |  ![](images/samples/encoded_image.png)  |  ![](images/samples/decoded_image.png)  |
 |  ![](images/samoyed2.png)  |  ![](images/encoded_image.png)  |  ![](images/decoded_image.png)  |
+
+
+<img src="images/samples/samoyed.png" width="450"> <img src="images/samples/encoded_image.png" width="450">
