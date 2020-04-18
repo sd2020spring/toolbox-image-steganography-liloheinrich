@@ -10,4 +10,4 @@ Instructions are on [the toolbox page](https://sd2020spring.github.io/toolboxes/
 Examples:  
 | original image     |  encoded image      |  secret message     |
 |:------------------:|:-------------------:|:-------------------:|
-|  ![](images/samples/samoyed.png)  |  ![](images/samples/encoded_image.png)  |  ![](images/samples/decoded_image.png)  |
+|  ![](images/samples/samoyed_lowres.png)  |  ![](images/samples/encoded_image_lowres.png)  |  ![](images/samples/decoded_image.png)  |
