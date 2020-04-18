@@ -8,4 +8,7 @@ Instructions are on [the toolbox page](https://sd2020spring.github.io/toolboxes/
 - Run **steganography.py** to encode/decode hidden messages in images.  
 
 Examples:  
-<img src="images/samples/samoyed.png" width="300">
+| original image     |  encoded image      |  secret message     |
+|:------------------:|:-------------------:|:-------------------:|
+|  ![](images/samples/samoyed.jpg)  |  ![](images/samples/encoded_image.png)  |  ![](images/samples/decoded_image.png)  |
+|  ![](images/samoyed2.jpg)  |  ![](images/encoded_image.png)  |  ![](images/decoded_image.png)  |
