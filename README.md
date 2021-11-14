@@ -1,7 +1,7 @@
 
 # Image Steganography
 
-Image Steganography toolbox starter code.  
+Software Design Image Steganography Toolbox  
 Instructions are on [the toolbox page](https://sd2020spring.github.io/toolboxes/image-steganography).  
 
 - Run `pip install pillow` to get pillow image library  
